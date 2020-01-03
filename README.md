@@ -128,12 +128,24 @@ GET /<index>/_search
 
 脑裂问题
 
+
 集群状态
 
 节点类型
 * 处理请求的节点（Coordination node）
 * 数据节点（Data node）
+* 主节点（Master）（索引操作，集群状态变更）
+* master eligible node（可以参与 master 选举成为master，每个节点默认为master eligible node）
+* machine learning
+
+
 分片数的设定
+
+primary shard设置过小，如果索引数据增长很快，无法通过增加节点对数据扩展
+设置过大，导致单个shard数据较小，导致单个节点上的分片较多，影响性能
+副本分片数过多，会降低集群整体的写性能。
+
+
 问：primary shard 数量默认为啥是1？（设置为多少比较合适？）
 
 分片路由
