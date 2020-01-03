@@ -1,10 +1,12 @@
-# 数据库&缓存&消息队列&搜索
+# 数据库&缓存&消息队列&搜索引擎
 
 
 ## 搜索引擎
 
 ### Elasticsearch
 You know, for search
+
+### 用户案例
 
 #### 术语
 * 索引：An index is like a table in a relational database. It has a mapping which contains a type, which contains the fields in the index.An index is a logical namespace which maps to one or more primary shards and can have zero or more replica shards.
@@ -15,7 +17,15 @@ You know, for search
 * 副本：Each primary shard can have zero or more replicas. 故障转移和提高性能。
 
 
-#### 元字段（meta-fields）
+#### 启动集群
+集群配置（JVM、日志）
+
+
+
+
+
+#### Mapping
+ 元字段（meta-fields）
 * _index
 * _type
 * _id
@@ -132,11 +142,12 @@ GET /<index>/_search
 集群状态
 
 节点类型
-* 处理请求的节点（Coordination node）
+* 协调节点（Coordination node，分发请求，聚合数据）
 * 数据节点（Data node）
 * 主节点（Master）（索引操作，集群状态变更）
 * master eligible node（可以参与 master 选举成为master，每个节点默认为master eligible node）
 * machine learning
+* ingest node
 
 
 分片数的设定
@@ -144,11 +155,16 @@ GET /<index>/_search
 primary shard设置过小，如果索引数据增长很快，无法通过增加节点对数据扩展
 设置过大，导致单个shard数据较小，导致单个节点上的分片较多，影响性能
 副本分片数过多，会降低集群整体的写性能。
+（官网介绍 elastic.co/guide/en/elasticsearch/reference/current/scalability.html#it-depends）
+通过测试确定最佳配置。
 
 
 问：primary shard 数量默认为啥是1？（设置为多少比较合适？）
 
 分片路由
+
+
+跨集群复制
 
 
 
