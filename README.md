@@ -33,6 +33,77 @@ You know, for search
 * _size
 * _score
 
+
+#### CRUD
+
+Index APIs
+```http request
+PUT /<index>
+
+
+
+PUT /twitter
+{
+    "settings" : {
+        "index" : {
+            "number_of_shards" : 3, 
+            "number_of_replicas" : 2 
+        }
+    }
+}
+
+
+PUT /test
+{
+    "settings" : {
+        "number_of_shards" : 1
+    },
+    "mappings" : {
+        "properties" : {
+            "field1" : { "type" : "text" }
+        }
+    }
+}
+
+```
+
+
+
+Document APIs
+```http request
+
+POST /<index>/_create/<_id>
+
+
+
+
+POST twitter/_create/1
+{
+    "user" : "kimchy",
+    "post_date" : "2009-11-15T14:12:12",
+    "message" : "trying out Elasticsearch"
+}
+```
+
+
+
+GET <index>/_source/<_id>   // 直接返回原始数据
+
+
+
+
+
+
+
+
+##### 
+
+
+
+
+
+
+
 #### Query DSL (Domain Specific Language)
 Query Context：判断文档是否匹配，同时计算相关性得分
 
