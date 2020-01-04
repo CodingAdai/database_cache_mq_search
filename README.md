@@ -105,6 +105,7 @@ GET <index>/_source/<_id>   // 直接返回原始数据
 Coordinating Node会将Query阶段，把每个分片获取的排序后的文档id列表，重新进行排序，选取from到from+size个文档的id
 以multi get请求的方式，到相应的分片获取详细的文档数据。
 
+文档中的这部分介绍了一些：https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html#coordinating-node
 
 
 
