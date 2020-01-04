@@ -96,7 +96,14 @@ GET <index>/_source/<_id>   // 直接返回原始数据
 
 
 
-##### 
+#### 搜索流程
+第一阶段：query
+用户发出搜索请求到ES节点，节点收到请求后，会以Coordinating节点的身份，在主副分片中随机选择分片，发送查询请求。
+被选中的分片执行查询，进行排序，然后都会返回from+size排序后的文档id和排序值给Coordinating节点。
+
+第二阶段：fetch
+Coordinating Node会将Query阶段，把每个分片获取的排序后的文档id列表，重新进行排序，选取from到from+size个文档的id
+以multi get请求的方式，到相应的分片获取详细的文档数据。
 
 
 
