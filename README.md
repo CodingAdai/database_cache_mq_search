@@ -273,7 +273,8 @@ primary shard设置过小，如果索引数据增长很快，无法通过增加�
 
 缓存
 Node query cache
-
+由该节点的所有shard共享，只缓存Filter Context相关内容。
+cache 采用LRU算法。
 
 ---
 ## 分布式
