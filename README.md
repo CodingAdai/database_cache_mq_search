@@ -176,6 +176,9 @@ terms set query 对字段（数组或列表类型）中的几个值精确查询�
 2. bucket
 Terms、Range
 
+3. pipeline 
+
+
 
 
 #### REST APIs 
@@ -266,6 +269,10 @@ primary shard设置过小，如果索引数据增长很快，无法通过增加�
 ```
 官方文档中此处有描述：https://www.elastic.co/guide/en/elasticsearch/reference/current/optimistic-concurrency-control.html（不全面）
 
+
+
+缓存
+Node query cache
 
 
 ---
