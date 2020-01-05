@@ -169,6 +169,12 @@ terms set query 对字段（数组或列表类型）中的几个值精确查询�
 
 
 #### Aggregations
+聚合
+
+1. metrics
+平均值、最大最小值、和值、 等等
+2. bucket
+Terms、Range
 
 
 
@@ -244,6 +250,21 @@ primary shard设置过小，如果索引数据增长很快，无法通过增加�
 
 
 跨集群复制
+
+
+深度分页问题
+当查询from=900，size=100时，需要在每个分片上查询1000出个文档，然后聚合所有结果(1000*需要查询的分片数)，最后再通过排序选取1000个结果。
+页数越大，需要的内存越多，为了避免深度分页带来的开销，ES默认限定到10000个文档。
+
+
+并发控制
+
+内部版本控制
+```
+  "_seq_no" : 89550,
+  "_primary_term" : 1,
+```
+官方文档中此处有描述：https://www.elastic.co/guide/en/elasticsearch/reference/current/optimistic-concurrency-control.html（不全面）
 
 
 
