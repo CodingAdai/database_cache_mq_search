@@ -313,6 +313,17 @@ MySQL如何使用索引
 https://dev.mysql.com/doc/refman/8.0/en/mysql-indexes.html
 
 
+
+备份与恢复
+
+物理备份
+Physical backups consist of raw copies of the directories and files that store database contents. This type of backup is suitable for large, important databases that need to be recovered quickly when problems occur.
+
+逻辑备份
+Logical backups save information represented as logical database structure (CREATE DATABASE, CREATE TABLE statements) and content (INSERT statements or delimited-text files). This type of backup is suitable for smaller amounts of data where you might edit the data values or table structure, or recreate the data on a different machine architecture.
+
+
+
 ---
 
 ## 文档数据库
