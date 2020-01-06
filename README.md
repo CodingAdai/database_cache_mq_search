@@ -8,6 +8,7 @@ You know, for search
 
 ### 用户案例
 
+
 #### 术语
 * 索引：An index is like a table in a relational database. It has a mapping which contains a type, which contains the fields in the index.An index is a logical namespace which maps to one or more primary shards and can have zero or more replica shards.
 * 文档：A document is a JSON document which is stored in Elasticsearch. It is like a row in a table in a relational database. Each document is stored in an index and has a type and an id.
@@ -90,7 +91,23 @@ POST twitter/_create/1
 GET <index>/_source/<_id>   // 直接返回原始数据
 
 
+Search APIs
+https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html
 
+支持两种形式：
+
+query string
+ request body
+
+
+请求形式：
+
+```
+GET /<index>/_search
+{
+  "query": {<parameters>}
+}
+```
 
 
 
@@ -108,6 +125,7 @@ Coordinating Node会将Query阶段，把每个分片获取的排序后的文档i
 文档中的这部分介绍了一些：https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html#coordinating-node
 
 
+#### Analysis
 
 
 
@@ -181,32 +199,6 @@ Terms、Range
 
 
 
-#### REST APIs 
-Index APIs
-
-Document APIs
-
-
-Search APIs
-https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html
-
-支持两种形式：
-
-query string
- request body
-
-
-请求形式：
-
-```
-GET /<index>/_search
-{
-  "query": {<parameters>}
-}
-```
-
-
-
 
 #### 相关性算分，算法：TF-IDF（5） 现在默认是BM 25
 
@@ -217,6 +209,13 @@ GET /<index>/_search
 
 
 #### 集群
+
+高可用
+
+安全
+
+监控
+
 
 分布式特性：
 
@@ -259,6 +258,8 @@ primary shard设置过小，如果索引数据增长很快，无法通过增加�
 当查询from=900，size=100时，需要在每个分片上查询1000出个文档，然后聚合所有结果(1000*需要查询的分片数)，最后再通过排序选取1000个结果。
 页数越大，需要的内存越多，为了避免深度分页带来的开销，ES默认限定到10000个文档。
 
+scroll api
+
 
 并发控制
 
@@ -275,6 +276,12 @@ primary shard设置过小，如果索引数据增长很快，无法通过增加�
 Node query cache
 由该节点的所有shard共享，只缓存Filter Context相关内容。
 cache 采用LRU算法。
+https://www.elastic.co/guide/en/elasticsearch/reference/current/query-cache.html
+
+Shard request cache
+缓存每个shard的本地执行结果。
+只缓存请求size=0, 不缓存hits, 缓存 hits.total, aggregations, and suggestions.
+
 
 ---
 ## 分布式
@@ -293,6 +300,18 @@ cache 采用LRU算法。
 
 ## 关系数据库
 MySQL
+
+
+版本特性
+
+安装配置
+
+
+安全
+
+MySQL如何使用索引
+https://dev.mysql.com/doc/refman/8.0/en/mysql-indexes.html
+
 
 ---
 
