@@ -323,6 +323,43 @@ Physical backups consist of raw copies of the directories and files that store d
 Logical backups save information represented as logical database structure (CREATE DATABASE, CREATE TABLE statements) and content (INSERT statements or delimited-text files). This type of backup is suitable for smaller amounts of data where you might edit the data values or table structure, or recreate the data on a different machine architecture.
 
 
+使用mysqldump 进行逻辑备份
+使用mysqlimport 导入备份数据
+
+使用Binary Log 进行时间点和增量备份。
+
+
+
+优化
+
+数据库级别优化
+表的结构是否合适。正确的数据类型。例如，执行频繁更新的应用程序通常具有许多表而具有很少的列，而分析大量数据的应用程序通常具有较少的表而具有很多列。
+
+是否设置了正确的索引提供查询效率。
+
+是否使用了合适的储存引擎。
+
+应用程序是否使用了合适的锁策略。
+
+
+优化 SELECT 语句
+select ...where 设置索引，explain 查看使用的索引
+每一行结构都执行函数调用会导致效率低
+最小化查询中全表扫描的次数
+
+
+硬件级别优化
+
+
+
+
+InnoDB Storage Engine
+
+
+复制
+
+
+
 
 ---
 
