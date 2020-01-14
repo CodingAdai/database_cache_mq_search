@@ -25,12 +25,16 @@ You know, for search
 通过jvm.options文件配置JVM相关参数。
 不超过物理内存的50%（因为ElasticSearch还需要系统内存做其他的事情）
 
-重要配置：
+重要的ElasticSearch配置：
 
 设置数据和日志目录。 path.data可以设置多个目录。
 集群名称
 节点名称
 network.host（生产环境不使用127.0.0.1回环地址）
+JVM参数
+
+重要的系统配置：
+
 
 
 
@@ -404,6 +408,46 @@ RocketMQ
 ## 缓存
 Redis
 
+in-memory data structure store, used as a database, cache and message broker
+
+安装
+
+./redis-server /path/to/redis.conf
+
+
+配置
+
+bind (安全起见，不配置为绑定所有网络接口)
+保护模式
+daemonize（yes）
+pidfile
+port
+loglevel
+logfile
+数据目录dir
+maxmemory
+
+
+安全
+可控的网络环境（如防火墙保护）
+仅在您使用的网络接口上侦听
+密码身份认证
+加密通信
+
+
+
+复制（Replication）
+
+
+
+持久化
+
+
+高可用
+
+
+
+数据类型
 
 
 
