@@ -317,7 +317,7 @@ Shard request cache
 
 ## 关系数据库
 MySQL
-
+https://yq.aliyun.com/topic/100
 
 版本特性
 
@@ -375,7 +375,8 @@ select ...where 设置索引，explain 查看使用的索引
 
 
 InnoDB Storage Engine
-
+Supports transactions, row-level locking, and foreign keys 
+multiversion concurrency control 多版本并发控制
 
 复制
 
@@ -407,6 +408,8 @@ RocketMQ
 ---
 ## 缓存
 Redis
+https://promotion.aliyun.com/ntms/act/redis5.html
+https://yq.aliyun.com/topic/129
 
 in-memory data structure store, used as a database, cache and message broker
 
@@ -448,6 +451,12 @@ maxmemory
 
 
 数据类型
+Stream
+
+
+问题
+热点key
+数据迁移
 
 
 
