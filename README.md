@@ -20,7 +20,17 @@ You know, for search
 
 #### 启动集群
 集群配置（JVM、日志）
+堆大小
+默认配置，JVM heap 最小和最大值为1 GB。
+通过jvm.options文件配置JVM相关参数。
+不超过物理内存的50%（因为ElasticSearch还需要系统内存做其他的事情）
 
+重要配置：
+
+设置数据和日志目录。 path.data可以设置多个目录。
+集群名称
+节点名称
+network.host（生产环境不使用127.0.0.1回环地址）
 
 
 
@@ -211,6 +221,9 @@ Terms、Range
 #### 集群
 
 高可用
+至少3个master节点，避免单点故障。
+
+
 
 安全
 
@@ -308,6 +321,10 @@ MySQL
 
 
 安全
+1、密码
+2、数据权限
+3、备份
+
 
 MySQL如何使用索引
 https://dev.mysql.com/doc/refman/8.0/en/mysql-indexes.html
@@ -357,6 +374,9 @@ InnoDB Storage Engine
 
 
 复制
+
+
+
 
 
 
