@@ -300,6 +300,18 @@ Shard request cache
 只缓存请求size=0, 不缓存hits, 缓存 hits.total, aggregations, and suggestions.
 
 
+
+分片生命周期
+对于时间序列索引，一般有4个阶段
+
+
+备份和恢复
+
+
+
+
+
+
 ---
 ## 分布式
 
@@ -377,6 +389,9 @@ select ...where 设置索引，explain 查看使用的索引
 InnoDB Storage Engine
 Supports transactions, row-level locking, and foreign keys 
 multiversion concurrency control 多版本并发控制
+Buffer Pool
+redo log
+undo log
 
 复制
 
