@@ -388,10 +388,26 @@ select ...where 设置索引，explain 查看使用的索引
 
 InnoDB Storage Engine
 Supports transactions, row-level locking, and foreign keys 
-multiversion concurrency control 多版本并发控制
+multiversion concurrency control 多版本并发控制（MVCC）
 Buffer Pool
 redo log
 undo log
+
+Shared and Exclusive Locks（共享锁和排它锁）
+意向锁
+记录锁
+Gap Locks（间隙锁）
+Next-Key Locks
+Insert Intention Locks
+
+
+非锁定一致性读
+
+
+online DDL
+
+INFORMATION_SCHEMA
+
 
 复制
 
@@ -416,6 +432,52 @@ RocketMQ
 分布式应用系统提供异步解耦和削峰填谷的能力
 
 核心概念：
+NameServer（2个或2个以上，避免单点故障）
+
+
+Broker Server
+
+Topic
+
+
+Tag
+
+
+Message
+
+
+
+消息类型
+1. 普通消息
+2. 顺序消息
+3. 广播消息
+4. 定时消息
+5. 事务消息
+
+
+
+Topic与Tag最佳实践（https://help.aliyun.com/document_detail/95837.html）
+通过合理的使用 Topic 和 Tag，可以让业务结构清晰，更可以提高效率。
+
+
+消费幂等
+
+消息重复的场景如下：
+
+发送时消息重复
+当一条消息已被成功发送到服务端并完成持久化，此时出现了网络闪断或者客户端宕机，导致服务端对客户端应答失败。 如果此时生产者意识到消息发送失败并尝试再次发送消息，消费者后续会收到两条内容相同并且 Message ID 也相同的消息。
+
+投递时消息重复
+消息消费的场景下，消息已投递到消费者并完成业务处理，当客户端给服务端反馈应答的时候网络闪断。为了保证消息至少被消费一次，消息队列 RocketMQ 版的服务端将在网络恢复后再次尝试投递之前已被处理过的消息，消费者后续会收到两条内容相同并且 Message ID 也相同的消息。
+
+负载均衡时消息重复（包括但不限于网络抖动、Broker 重启以及消费者应用重启）
+当消息队列 RocketMQ 版的 Broker 或客户端重启、扩容或缩容时，会触发 Rebalance，此时消费者可能会收到重复消息。
+
+
+
+
+broker 角色：
+Broker Role is ASYNC_MASTER, SYNC_MASTER or SLAVE.
 
 
 
